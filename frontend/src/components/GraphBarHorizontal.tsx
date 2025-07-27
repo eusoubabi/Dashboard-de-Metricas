@@ -1,43 +1,49 @@
-import React from "react";
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Title } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import Card from "./design/Card";
+import TitleText from "./design/Title";
 
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Title);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-interface BarProps {
+interface Props {
   title: string;
   data: {
     labels: string[];
-    values: number[];
+    datasets: {
+      label: string;
+      data: number[];
+      backgroundColor: string | string[];
+    }[];
   };
+  className?: string;
 }
 
-const GraphBarHorizontal: React.FC<BarProps> = ({ title, data }) => {
-  const chartData = {
-    labels: data.labels,
-    datasets: [
-      {
-        label: "Quantidade",
-        data: data.values,
-        backgroundColor: "#60a5fa",
-      },
-    ],
-  };
+const GraphBarHorizontal = ({ title, data, className }: Props) => {
+  const isDataValid =
+    data &&
+    Array.isArray(data.labels) &&
+    Array.isArray(data.datasets) &&
+    data.datasets.length > 0 &&
+    data.datasets.every((ds) => Array.isArray(ds.data));
 
   const options = {
-    indexAxis: "y" as const,
     responsive: true,
     maintainAspectRatio: false,
+    indexAxis: "y" as const,
     scales: {
       x: {
-        ticks: {
-          color: "#fff",
-        },
+        ticks: { color: "#fff" },
       },
       y: {
-        ticks: {
-          color: "#fff",
-        },
+        ticks: { color: "#fff" },
       },
     },
     plugins: {
@@ -50,12 +56,18 @@ const GraphBarHorizontal: React.FC<BarProps> = ({ title, data }) => {
   };
 
   return (
-    <div className="bg-zinc-800 p-6 rounded shadow w-full overflow-x-auto">
-      <h2 className="mb-4 font-semibold text-lg">{title}</h2>
-      <div className="h-64 w-full max-w-3xl mx-auto">
-        <Bar data={chartData} options={options} />
+   <Card className={`h-[30rem] flex flex-col justify-between px-4 py-6 gap-y-4 overflow-hidden ${className ?? ""}`}>
+      <TitleText>{title}</TitleText>
+      <div className="flex-1 flex items-center justify-center">
+        {isDataValid ? (
+          <div className="w-full h-[16rem]">
+            <Bar data={data} options={options} />
+          </div>
+        ) : (
+          <div className="text-white">Dados insuficientes para exibir o gráfico.</div>
+        )}
       </div>
-    </div>
+    </Card>
   );
 };
 

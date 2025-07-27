@@ -1,17 +1,16 @@
-// src/components/KPIBlock.tsx
-import React from "react";
+import Card from "./design/Card";
 
 interface Props {
   label: string;
   value: string | number;
 }
 
-const KPIBlock: React.FC<Props> = ({ label, value }) => {
+const KPIBlock = ({ label, value }: Props) => {
   return (
-    <div className="bg-zinc-800 p-4 rounded shadow w-full min-w-[120px] text-center">
+    <Card className="p-4 text-center min-w-[120px] h-full flex flex-col justify-center">
       <div className="text-sm text-zinc-400 truncate">{label}</div>
       <div className="text-xl font-bold">{value}</div>
-    </div>
+    </Card>
   );
 };
 

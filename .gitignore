@@ -1,9 +1,19 @@
-# Arquivos de ambiente
-.env
-backend/.env
-
-# Node modules
+# Node
 node_modules/
 
-# Build do frontend
+# Builds
 frontend/dist/
+frontend/build/
+backend/dist/
+
+# Environment variables
+.env
+backend/.env
+frontend/.env
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
