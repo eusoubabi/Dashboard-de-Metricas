@@ -12,9 +12,10 @@ interface Props {
     values: number[];
     colors: string[];
   };
+  className?: string; // Agora aceita className
 }
 
-const GraphPie = ({ title, data }: Props) => {
+const GraphPie = ({ title, data, className }: Props) => {
   const isDataValid =
     Array.isArray(data.labels) &&
     Array.isArray(data.values) &&
@@ -44,11 +45,11 @@ const GraphPie = ({ title, data }: Props) => {
   };
 
   return (
-    <Card className="h-[30rem] flex flex-col justify-between px-4 py-6 gap-y-4 overflow-hidden">
+    <Card className={`h-[28rem] flex flex-col justify-between px-4 py-6 gap-y-4 overflow-hidden ${className ?? ""}`}>
       <Title>{title}</Title>
       <div className="flex-1 flex items-center justify-center">
         {isDataValid ? (
-          <div className="w-full h-[16rem]">
+          <div className="w-full h-[18rem] sm:h-[22rem]">
             <Pie data={chartData} options={options} />
           </div>
         ) : (

@@ -7,7 +7,7 @@ interface Props {
 
 const KPIBlock = ({ label, value }: Props) => {
   return (
-    <Card className="p-4 text-center min-w-[120px] h-full flex flex-col justify-center">
+    <Card className="p-4 text-center flex flex-col justify-center w-full">
       <div className="text-sm text-zinc-400 truncate">{label}</div>
       <div className="text-xl font-bold">{value}</div>
     </Card>

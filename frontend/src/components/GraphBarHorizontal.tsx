@@ -23,7 +23,7 @@ interface Props {
       backgroundColor: string | string[];
     }[];
   };
-  className?: string;
+  className?: string; // Mantido para uniformidade
 }
 
 const GraphBarHorizontal = ({ title, data, className }: Props) => {
@@ -39,28 +39,20 @@ const GraphBarHorizontal = ({ title, data, className }: Props) => {
     maintainAspectRatio: false,
     indexAxis: "y" as const,
     scales: {
-      x: {
-        ticks: { color: "#fff" },
-      },
-      y: {
-        ticks: { color: "#fff" },
-      },
+      x: { ticks: { color: "#fff" } },
+      y: { ticks: { color: "#fff" } },
     },
     plugins: {
-      legend: {
-        labels: {
-          color: "#fff",
-        },
-      },
+      legend: { labels: { color: "#fff" } },
     },
   };
 
   return (
-   <Card className={`h-[30rem] flex flex-col justify-between px-4 py-6 gap-y-4 overflow-hidden ${className ?? ""}`}>
+    <Card className={`h-[28rem] flex flex-col justify-between px-4 py-6 gap-y-4 overflow-hidden ${className ?? ""}`}>
       <TitleText>{title}</TitleText>
       <div className="flex-1 flex items-center justify-center">
         {isDataValid ? (
-          <div className="w-full h-[16rem]">
+          <div className="w-full h-[18rem] sm:h-[22rem]">
             <Bar data={data} options={options} />
           </div>
         ) : (

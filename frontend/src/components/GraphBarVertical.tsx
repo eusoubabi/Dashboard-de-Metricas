@@ -23,7 +23,7 @@ interface Props {
       backgroundColor: string | string[];
     }[];
   };
-  className?: string;
+  className?: string; // Agora aceita className
 }
 
 const GraphBarVertical = ({ title, data, className }: Props) => {
@@ -46,11 +46,11 @@ const GraphBarVertical = ({ title, data, className }: Props) => {
   };
 
   return (
-    <Card className={`h-[30rem] flex flex-col justify-between px-4 py-6 gap-y-4 overflow-hidden ${className ?? ""}`}>
+    <Card className={`h-[28rem] flex flex-col justify-between px-4 py-6 gap-y-4 overflow-hidden ${className ?? ""}`}>
       <Title>{title}</Title>
       <div className="flex-1 flex items-center justify-center">
         {isDataValid ? (
-          <div className="w-full h-[16rem]">
+          <div className="w-full h-[18rem] sm:h-[22rem]">
             <Bar data={data} options={options} />
           </div>
         ) : (
