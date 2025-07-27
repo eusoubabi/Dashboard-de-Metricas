@@ -1,0 +1,19 @@
+# Node
+node_modules/
+
+# Builds
+frontend/dist/
+frontend/build/
+backend/dist/
+
+# Environment variables
+.env
+backend/.env
+frontend/.env
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
